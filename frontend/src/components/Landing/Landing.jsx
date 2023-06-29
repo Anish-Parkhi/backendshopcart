@@ -7,6 +7,7 @@ function Landing() {
     <div>
       <Navbar />
       <Home headline="Grab Upto 50% Off On Selected Headphone" />
+
       <Product
         name="Airpod-Max"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce, pulvinar urna cum."

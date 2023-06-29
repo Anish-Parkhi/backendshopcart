@@ -42,6 +42,12 @@
 
 /* card styling */
 
+.baap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .cardWrapper{
     display: flex;
     flex-direction: column;

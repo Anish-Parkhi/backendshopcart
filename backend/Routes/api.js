@@ -1,21 +1,31 @@
-const express = require('express')
-const router = express.Router();
-const Student = require('../Models/students');
-router.get('/students',(req, res,next) => {
-    Student.find({}).then(function students(){
-        res.send(students);
-    }).catch(next);
-})
-router.post('/students',function(req,res,next){
-    Student.create(req.body).then(function(student){
-        res.send(student);
-    }).catch(next);
-});
-router.put('/students/:id',function(req,res,next){
-    Student.findOneAndUpdate({_id: req.params.id},req.body).then(function(student){
-        Student.findOne({_id: req.params.id}).then(function(student){
-            res.send(student);
-        });
-    });
-});
-module.exports = router;
+// Get all products
+
+
+app.get('/products', (req, res) => {
+    Product.find()
+      .then((products) => {
+        res.json(products);
+      })
+      .catch((error) => {
+        console.error('Error retrieving products:', error);
+        res.status(500).json({ error: 'Internal server error' });
+      });
+  });
+  
+  // Get a single product by ID
+  app.get('/products/:id', (req, res) => {
+    const productId = req.params.id;
+  
+    Product.findById(productId)
+      .then((product) => {
+        if (!product) {
+          return res.status(404).json({ error: 'Product not found' });
+        }
+        res.json(product);
+      })
+      .catch((error) => {
+        console.error('Error retrieving product:', error);
+        res.status(500).json({ error: 'Internal server error' });
+      });
+  });
+  
