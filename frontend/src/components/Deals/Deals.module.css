@@ -1,0 +1,8 @@
+.dealsContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    text-align: center;
+    margin: auto;
+    font-size: 3rem;
+}

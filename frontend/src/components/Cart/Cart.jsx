@@ -1,9 +1,11 @@
 import styles from "./Cart.module.css";
 import headphoneImg from "./headphone.jpg";
 import PropTypes from "prop-types";
+import Navbar from "../Navbar/Navbar";
 function Cart(props) {
   return (
     <>
+      <Navbar />
       <div className={styles.cartContainer}>
         <div className={styles.cartContainerHeader}>
           <div>Shopping Cart</div>

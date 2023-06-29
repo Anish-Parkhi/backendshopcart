@@ -1,14 +1,22 @@
+import React from "react";
 import styles from "./Home.module.css";
 import PropTypes from "prop-types";
 import img from "./girl.png";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import headphoneImg from "./headphone.jpg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+//exporting context
+export const ProductContext = React.createContext();
 function Home(props) {
   const [favorite, setFavourite] = useState(false);
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate("/product");
+  }
   useEffect(() => {
     axios
       .get("http://localhost:3000/products")
@@ -19,13 +27,37 @@ function Home(props) {
         console.log(err);
       });
   }, []);
+
+  //logic to implement smooth scroll
+  const scrollRef = useRef(null);
+
+  const enableScroll = () => {
+    scrollRef.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
+  //scroll button logic
+  // This logic will not work for single page application
+  // const scrollButton = document.getElementById("scrollButton");
+  // scrollButton.addEventListener("click", () => {
+  //   const button = document.getElementById("target");
+  //   button.scrollIntoView({ behavior: "smooth" });
+  // });
+
   // const [cart, setCart] = useState(null);
   return (
     <div>
       <div className={styles.posterContainerWrapper}>
         <div className={styles.posterContainer}>
           <p className={styles.posterContainerHeadline}>{props.headline}</p>
-          <button className={styles.posterContainerButton}>Buy Now</button>
+          <button
+            onClick={enableScroll}
+            id="scrollButton"
+            className={styles.posterContainerButton}
+          >
+            Buy Now
+          </button>
         </div>
         <div style={{ marginLeft: "auto" }}>
           <img className={styles.posterContainerImage} src={img} />
@@ -33,7 +65,7 @@ function Home(props) {
       </div>
 
       {/* card view */}
-      <div className={styles.baap}>
+      <div ref={scrollRef} id="target" className={styles.baap}>
         {posts?.map((item, index) => {
           return (
             <div key={index} className={styles.cardWrapper}>
@@ -51,7 +83,11 @@ function Home(props) {
                     onClick={() => setFavourite(!favorite)}
                   />
                 )}
-                <img className={styles.cardContainerImg} src={headphoneImg} />
+                <img
+                  onClick={handleClick}
+                  className={styles.cardContainerImg}
+                  src={item.url}
+                />
               </div>
               <div className={styles.cardFooter}>
                 <div className={styles.cardFooterHeadingDiv}>

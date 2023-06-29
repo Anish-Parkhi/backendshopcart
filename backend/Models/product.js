@@ -11,6 +11,10 @@ const productSchme = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    url: {
+        type: String,
+        require: true
     }
 });
 const Product = mongoose.model('Product',productSchme)

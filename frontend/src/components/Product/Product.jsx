@@ -5,10 +5,13 @@ import headphoneImg from "./headphonecpy.jpg";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import Navbar from "../Navbar/Navbar";
+
 function Product(props) {
   const [count, setCount] = useState(0);
   return (
     <>
+      <Navbar />
       <div className={styles.productContainer}>
         <div className={styles.productContainerImgDiv}>
           <img className={styles.productContainerImg} src={headphoneImg} />

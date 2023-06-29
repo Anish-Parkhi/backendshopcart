@@ -7,20 +7,57 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
-import { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [post, setPosts] = useState([]);
+  const [overlay, setOverlay] = useState(false);
+  const [filterdata, setFilterData] = useState([]);
+
+  //searchBar logic
+  const handleChange = (e) => {
+    if (search.charAt(0) === " ") {
+      setSearch("");
+    } else {
+      setSearch(e.target.value);
+    }
+    const filteredResult = post.filter((item) =>
+      item.product.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilterData(filteredResult);
+  };
+
+  const openOverlay = () => {
+    setOverlay(!overlay);
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/products")
+      .then((res) => {
+        setPosts(res.data);
+        // console.log(post);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [search]);
+
   return (
     <>
       <nav className={styles.navBarContainer}>
         <ul className={styles.navbarList}>
           <li>
-            <a style={{ fontSize: "3rem" }} href="/">
+            <Link style={{ fontSize: "3rem" }} to="/">
               ShopCart
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/categories">Categories</a>
+            <Link>Categories</Link>
             <ArrowDropDownIcon
               style={{ fontSize: "2rem", position: "relative", top: "0.5rem" }}
               onClick={() => setOpen(!open)}
@@ -28,7 +65,7 @@ function Navbar() {
             />
           </li>
           <li>
-            <a href="/deals">Deals</a>
+            <Link to="/deals">Deals</Link>
             <LocalOfferIcon
               style={{
                 fontSize: "1.6rem",
@@ -40,12 +77,13 @@ function Navbar() {
           </li>
           <li>
             <TextField
+              onChange={handleChange}
               label="Search"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton>
-                      <SearchIcon />
+                    <IconButton onClick={openOverlay}>
+                      {overlay ? <CloseIcon /> : <SearchIcon />}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -53,14 +91,14 @@ function Navbar() {
             />
           </li>
           <li>
-            <a href="/account">Account</a>
+            <Link to="/account">Account</Link>
             <AccountCircleIcon
               style={{ fontSize: "2rem", position: "relative", top: "0.5rem" }}
               className={styles.muiIcon}
             />
           </li>
           <li>
-            <a href="/cart">Cart</a>
+            <Link to="/cart">Cart</Link>
             <ShoppingCartIcon
               style={{ fontSize: "2rem", position: "relative", top: "0.5rem" }}
               className={styles.muiIcon}
@@ -84,6 +122,21 @@ function Navbar() {
             </li>
           </ul>
         </div>
+      )}
+
+      {overlay && (
+        <>
+          <div className={styles.overlayContainer}>
+            {filterdata?.map((item) => (
+              <div className={styles.overlapContainerInnerDiv} key={item.id}>
+                <div style={{ flexBasis: "50%", margin: "auto 0px" }}>
+                  {item.product}
+                </div>
+                <img className={styles.overlapContainerImage} src={item.url} />
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </>
   );
