@@ -1,0 +1,97 @@
+.posterContainerWrapper{
+    display: flex;
+    flex-direction: row;
+    /* padding: 2rem; */
+    width: 70%;
+    margin: auto;
+    margin-top: 2rem;
+    border-radius: 0.7rem;
+    background-color: #FCF0E4;
+}
+.posterContainer{
+    flex-basis: 50%;
+}
+.posterContainerHeadline{
+    font-size: 2.4rem;
+    width: 80%;
+    font-weight: 700;
+    color: rgb(2, 60, 2);
+}
+.posterContainerButton{
+    padding: 1rem;
+    border-radius: 1.5rem;
+    border: none;
+    background-color: rgb(2, 60, 2);
+    color: white;
+    font-size: 1rem;
+    width: 9rem;
+}
+
+.posterContainerImage{
+    width: 60%;
+    align-items: flex-end;
+    padding: 0px;
+    margin-left: auto;
+    height: 100%;
+}
+
+.posterContainer{
+    padding: 2rem;
+    padding-left: 4rem;
+}
+
+/* card styling */
+
+.cardWrapper{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 20%;
+    /* margin: 1rem; */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: #F6F6F6;
+    border: none;
+    border-radius: 1.5rem;
+}
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem;
+}
+.cardContainerFavIcon{
+    text-align: right;
+}
+.cardContainerImg{
+    /* width: 20%; */
+    margin: auto;
+    padding: 0px;
+    border-radius: 1.4rem;
+    width: 90%;
+}
+
+.cardFooter{
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.cardFooterHeadingDiv{
+    display: flex;
+    flex-direction: row;
+}
+
+.cardFooterDescription div{
+    font-size: 0.8rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.7rem;
+}
+
+.cardFooterButton{
+    padding: 0.6rem;
+    border-radius: 1.2rem;
+    border: none;
+    font-size: 1rem;
+    width: 50%;
+    background-color: rgb(2, 60, 2);
+    color: white;
+}

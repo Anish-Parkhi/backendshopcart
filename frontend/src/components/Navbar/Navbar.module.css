@@ -1,0 +1,61 @@
+.navBarContainer{
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    padding-top: 0.5rem;
+}
+
+.navbarList{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    list-style-type: none;
+    color: black;
+    text-align: center;
+    margin: auto;
+    padding: 0px;
+}
+
+.navbarList a{
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: black;
+    text-align: center;
+    padding: 0.8rem;
+}   
+.overlapContainer{
+    position: absolute;
+    z-index: 999;
+    background-color: rgb(223, 220, 220);
+    color: black;
+    width: 20%;
+    margin: auto;
+    text-align: left;
+    margin-left: 19rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 0.7rem;
+}
+
+.overlapContainerList{
+    list-style: none;
+}
+
+.overlapContainerList li{
+    padding: 0.3rem;
+}
+
+.overlapContainerList a{
+    text-decoration: none;
+    color: black;
+}
+
+.icon{
+    transition: transform 0.5s;
+}
+
+.iconOpen{
+    transform: rotate(180deg);
+}
