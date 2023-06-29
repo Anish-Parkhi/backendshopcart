@@ -59,3 +59,25 @@
 .iconOpen{
     transform: rotate(180deg);
 }
+
+.overlayContainer{
+    position: absolute;
+    border: none;
+    width: 23%;
+    text-align: center;
+    margin-left: 48%;
+    border-radius: 2rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    background-color: rgb(223, 220, 220);
+}
+
+.overlapContainerInnerDiv{
+    display: flex;
+    padding: 1rem;
+}
+.overlapContainerImage{
+    width: 35%;
+    border-radius: 0.6rem;
+    justify-content: flex-end;
+}
