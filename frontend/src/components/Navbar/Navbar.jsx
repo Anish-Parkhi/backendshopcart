@@ -33,6 +33,7 @@ function Navbar() {
 
   const openOverlay = () => {
     setOverlay(!overlay);
+    setSearch("");
   };
 
   useEffect(() => {

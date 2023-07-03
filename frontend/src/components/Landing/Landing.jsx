@@ -1,7 +1,7 @@
 import Navbar from "../Navbar/Navbar";
 import Home from "../Home/Home";
-import Product from "../Product/Product";
-import Cart from "../Cart/Cart";
+// import Product from "../Product/Product";
+// import Cart from "../Cart/Cart";
 function Landing() {
   return (
     <div>
