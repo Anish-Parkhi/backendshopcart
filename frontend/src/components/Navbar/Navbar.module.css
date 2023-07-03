@@ -37,6 +37,13 @@
     padding: 1rem;
     font-size: 1.2rem;
     border-radius: 0.7rem;
+    /* From https://css.glass */
+    background: rgba(233, 233, 233, 0.47);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    border: 1px solid rgba(233, 233, 233, 0.39);
 }
 
 .overlapContainerList{
@@ -69,7 +76,13 @@
     border-radius: 2rem;
     padding: 1rem;
     font-size: 1.2rem;
-    background-color: rgb(223, 220, 220);
+    /* From https://css.glass */
+    background: rgba(180, 179, 179, 0.28);
+    border-radius: 2rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.7px);
+    -webkit-backdrop-filter: blur(6.7px);
+    border: 1px solid rgba(180, 179, 179, 0.39);
 }
 
 .overlapContainerInnerDiv{

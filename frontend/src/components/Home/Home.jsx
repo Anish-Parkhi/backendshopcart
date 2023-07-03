@@ -1,22 +1,23 @@
-import React from "react";
 import styles from "./Home.module.css";
 import PropTypes from "prop-types";
 import img from "./girl.png";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, createContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 //exporting context
-export const ProductContext = React.createContext();
+export const ProductContext = createContext();
 function Home(props) {
   const [favorite, setFavourite] = useState(false);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
-  function handleClick() {
-    navigate("/product");
+  const [id, setId] = useState("");
+  function handleClick(id) {
+    setId(id);
+    navigate("/product", { state: { id } });
   }
+  // console.log(id);
   useEffect(() => {
     axios
       .get("http://localhost:3000/products")
@@ -27,7 +28,6 @@ function Home(props) {
         console.log(err);
       });
   }, []);
-
   //logic to implement smooth scroll
   const scrollRef = useRef(null);
 
@@ -36,18 +36,8 @@ function Home(props) {
       behavior: "smooth",
     });
   };
-
-  //scroll button logic
-  // This logic will not work for single page application
-  // const scrollButton = document.getElementById("scrollButton");
-  // scrollButton.addEventListener("click", () => {
-  //   const button = document.getElementById("target");
-  //   button.scrollIntoView({ behavior: "smooth" });
-  // });
-
-  // const [cart, setCart] = useState(null);
   return (
-    <div>
+    <ProductContext.Provider value={id}>
       <div className={styles.posterContainerWrapper}>
         <div className={styles.posterContainer}>
           <p className={styles.posterContainerHeadline}>{props.headline}</p>
@@ -83,11 +73,16 @@ function Home(props) {
                     onClick={() => setFavourite(!favorite)}
                   />
                 )}
-                <img
-                  onClick={handleClick}
-                  className={styles.cardContainerImg}
-                  src={item.url}
-                />
+                <div
+                  style={{ textAlign: "center" }}
+                  onClick={() => handleClick(item._id)}
+                >
+                  <img
+                    // onClick={() => handleClick(item._id)}
+                    className={styles.cardContainerImg}
+                    src={item.url}
+                  />
+                </div>
               </div>
               <div className={styles.cardFooter}>
                 <div className={styles.cardFooterHeadingDiv}>
@@ -107,7 +102,7 @@ function Home(props) {
           );
         })}
       </div>
-    </div>
+    </ProductContext.Provider>
   );
 }
 Home.propTypes = {

@@ -1,0 +1,16 @@
+.signincontainer{
+    width: 30%;
+    display: flex;
+    padding: 7rem;
+    font-size: 2rem;
+    margin: auto;
+    margin-top: 5rem;
+    background-color: antiquewhite;
+    border-radius: 2rem;
+}
+
+.signincontainerInnerDiv{
+    margin: auto;
+    text-align: center;
+    /* padding-top: 1rem; */
+}
