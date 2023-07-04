@@ -2,25 +2,27 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Product = require('./Models/product');
 const cors = require('cors');
+const CartItem = require('./Models/cart');
 
 const app = express();
 const PORT = 3000;
-app.use(cors({origin: true, credentials: true}));
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json());
 mongoose.connect('mongodb://localhost:27017/shopping', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  family:4
-})
+  family: 4
+});
+
 // Event handler for successful connection
 mongoose.connection.on('connected', () => {
-    console.log('Connected to MongoDB');
-  });
-  
-  // Event handler for connection error
-mongoose.connection.on('error', (error) => {
-    console.error('Error connecting to MongoDB:', error);
-  });
+  console.log('Connected to MongoDB');
+});
 
+// Event handler for connection error
+mongoose.connection.on('error', (error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
 
 // Get all products
 app.get('/products', (req, res) => {
@@ -50,6 +52,33 @@ app.get('/products/:id', (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     });
 });
+
+app.post('/cart', (req, res) => {
+  const { name, quantity, price } = req.body;
+
+  const newItem = new CartItem({ name, quantity, price });
+
+  newItem.save()
+    .then((item) => {
+      res.json(item);
+    })
+    .catch((error) => {
+      console.error('Error saving item:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    });
+});
+
+app.get('/cart', (req, res) => {
+  CartItem.find()
+    .then((items) => {
+      res.json(items);
+    })
+    .catch((error) => {
+      console.error('Error retrieving items:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    });
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);

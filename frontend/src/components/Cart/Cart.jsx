@@ -2,6 +2,7 @@ import styles from "./Cart.module.css";
 import headphoneImg from "./headphone.jpg";
 import PropTypes from "prop-types";
 import Navbar from "../Navbar/Navbar";
+import axios from "axios";
 function Cart(props) {
   return (
     <>
@@ -36,5 +37,6 @@ Cart.propTypes = {
   name: PropTypes.string,
   quantity: PropTypes.string,
   price: PropTypes.string,
+  productID: PropTypes.string,
 };
 export default Cart;
