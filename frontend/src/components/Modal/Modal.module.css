@@ -1,0 +1,25 @@
+.modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rbga(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-left: 20px; */
+}
+.modalBodyMain{
+    width: 500px;
+    background-color: #fff;
+    padding: 20px;
+}
+.modalHeader .modalFooter{
+    padding: 20px;
+}
+.modalBody{
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}

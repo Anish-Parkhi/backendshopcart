@@ -1,18 +1,20 @@
 import styles from "./Product.module.css";
-import { useState, useEffect } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import Navbar from "../Navbar/Navbar";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Modal from "../Modal/Modal";
+// import Cart from "../Cart/Cart";
 function Product() {
   const [count, setCount] = useState(0);
   const [posts, setPosts] = useState([]);
+  const [show, setShow] = useState(false);
   const location = useLocation();
   const id = location.state.id;
-  console.log(id);
   useEffect(() => {
     axios
       .get(`http://localhost:3000/products/${id}`)
@@ -22,7 +24,35 @@ function Product() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
+  const navigate = useNavigate();
+  const navigateToCheckout = () => {
+    navigate("/checkout");
+  };
+  const handleClick = () => {
+    // toggle Modal
+    // setShow(true);
+    if (posts.length === 0) {
+      return; // Do not proceed if posts data is not available yet
+    }
+    const newItem = {
+      name: posts.product,
+      price: posts.price,
+      quantity: count,
+    };
+    axios
+      .post("http://localhost:3000/cart", newItem, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <Navbar />
@@ -36,7 +66,7 @@ function Product() {
             {posts.description}
           </div>
           <hr />
-          <div className={styles.productContainerPrice}>{posts.price}</div>
+          <div className={styles.productContainerPrice}>$ {posts.price}</div>
           <div style={{ fontSize: "0.8rem" }}>
             6 months EMI options avalible on SBI Credit Cards
           </div>
@@ -51,7 +81,10 @@ function Product() {
             </div>
           </div>
           <div className={styles.productContainerButtons}>
-            <button style={{ marginLeft: "1rem" }}>Add to Cart</button>
+            {/* modal area */}
+            <button onClick={handleClick} style={{ marginLeft: "1rem" }}>
+              Add to Cart
+            </button>
             <div className={styles.productContainerBagIcon}>
               <ShoppingBagIcon style={{ fontSize: "3rem" }} />
               <div style={{ marginTop: "0.3rem", marginLeft: "0.2rem" }}>
@@ -62,6 +95,10 @@ function Product() {
           </div>
         </div>
       </div>
+      <button onClick={() => setShow(true)}>Show Modal</button>
+      {/* modal component */}
+      <Modal onClose={() => setShow(false)} show={show} />
+      <button onClick={navigateToCheckout}>Proceed to Checkout</button>
     </>
   );
 }

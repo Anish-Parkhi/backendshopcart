@@ -3,21 +3,19 @@ import PropTypes from "prop-types";
 import img from "./girl.png";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState, useEffect, useRef, createContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-//exporting context
-export const ProductContext = createContext();
 function Home(props) {
   const [favorite, setFavourite] = useState(false);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [id, setId] = useState("");
   function handleClick(id) {
     setId(id);
     navigate("/product", { state: { id } });
   }
-  // console.log(id);
   useEffect(() => {
     axios
       .get("http://localhost:3000/products")
@@ -37,7 +35,7 @@ function Home(props) {
     });
   };
   return (
-    <ProductContext.Provider value={id}>
+    <>
       <div className={styles.posterContainerWrapper}>
         <div className={styles.posterContainer}>
           <p className={styles.posterContainerHeadline}>{props.headline}</p>
@@ -73,10 +71,7 @@ function Home(props) {
                     onClick={() => setFavourite(!favorite)}
                   />
                 )}
-                <div
-                  style={{ textAlign: "center" }}
-                  onClick={() => handleClick(item._id)}
-                >
+                <div style={{ textAlign: "center" }}>
                   <img
                     // onClick={() => handleClick(item._id)}
                     className={styles.cardContainerImg}
@@ -93,8 +88,11 @@ function Home(props) {
                 </div>
                 <div className={styles.cardFooterDescription}>
                   <div>{item.description}</div>
-                  <button className={styles.cardFooterButton}>
-                    Add to cart
+                  <button
+                    onClick={() => handleClick(item._id)}
+                    className={styles.cardFooterButton}
+                  >
+                    View More
                   </button>
                 </div>
               </div>
@@ -102,7 +100,7 @@ function Home(props) {
           );
         })}
       </div>
-    </ProductContext.Provider>
+    </>
   );
 }
 Home.propTypes = {
