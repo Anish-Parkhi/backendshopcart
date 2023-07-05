@@ -62,7 +62,7 @@ function Product() {
             {posts.description}
           </div>
           <hr />
-          <div className={styles.productContainerPrice}>$ {posts.price}</div>
+          <div className={styles.productContainerPrice}> ₹ {posts.price}</div>
           <div style={{ fontSize: "0.8rem" }}>
             6 months EMI options avalible on SBI Credit Cards
           </div>

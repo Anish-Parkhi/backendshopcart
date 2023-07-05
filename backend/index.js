@@ -1,9 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Product = require("./Models/product");
 const cors = require("cors");
+const Product = require("./Models/product");
 const CartItem = require("./Models/cart");
-
+const Wishlist = require("./Models/wishlist");
+require("dotenv").config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const bodyParser = require("body-parser");
 const app = express();
 const PORT = 3000;
 app.use(cors({ origin: true, credentials: true }));
@@ -90,6 +93,71 @@ app.delete("/cart/:id", (req, res) => {
       console.error("Error deleting item:", error);
       res.status(500).json({ error: "Internal server error" });
     });
+});
+
+//wishlist routes
+
+app.post("/wishlist", (req, res) => {
+  const { product, description, url, price } = req.body;
+  const wishlistItem = Wishlist({ product, description, url, price });
+  wishlistItem
+    .save()
+    .then((item) => {
+      res.json(item);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+app.get("/wishlist", (req, res) => {
+  Wishlist.find()
+    .then((items) => {
+      res.json(items);
+    })
+    .catch((error) => {
+      console.error("Error retrieving items:", error);
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
+
+app.delete("/wishlist/:id", (req, res) => {
+  const itemId = req.params.id;
+  Wishlist.findByIdAndDelete(itemId)
+    .then(() => {
+      res.status(200).json({ message: "Item deleted successfully" });
+    })
+    .catch((error) => {
+      console.error("Error deleting item:", error);
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
+
+//payment route
+
+app.post("/payment", cors(), async (req, res) => {
+  let { amount, id } = req.body;
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount: amount,
+      currency: "USD",
+      description: "Order placed for products",
+      payment_method: id,
+      confirm: true,
+    });
+    console.log("Payment", payment);
+    res.json({
+      message: "Payment successful",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error", error);
+    res.json({
+      message: "Payment failed",
+      success: false,
+    });
+  }
 });
 
 app.listen(PORT, () => {
