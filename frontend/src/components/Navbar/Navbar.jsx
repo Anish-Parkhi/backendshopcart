@@ -9,6 +9,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 function Navbar() {
@@ -17,6 +18,14 @@ function Navbar() {
   const [post, setPosts] = useState([]);
   const [overlay, setOverlay] = useState(false);
   const [filterdata, setFilterData] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate(`/product/${id}`, { state: { id } });
+    setOverlay(false);
+    setSearch("");
+  };
 
   //searchBar logic
   const handleChange = (e) => {
@@ -100,6 +109,7 @@ function Navbar() {
           </li>
           <li>
             <Link to="/cart">Cart</Link>
+            {/* <span>Cart</span> */}
             <ShoppingCartIcon
               style={{ fontSize: "2rem", position: "relative", top: "0.5rem" }}
               className={styles.muiIcon}
@@ -133,7 +143,11 @@ function Navbar() {
                 <div style={{ flexBasis: "50%", margin: "auto 0px" }}>
                   {item.product}
                 </div>
-                <img className={styles.overlapContainerImage} src={item.url} />
+                <img
+                  onClick={() => handleClick(item._id)}
+                  className={styles.overlapContainerImage}
+                  src={item.url}
+                />
               </div>
             ))}
           </div>

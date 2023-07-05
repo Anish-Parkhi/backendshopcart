@@ -2,7 +2,7 @@ import styles from "./Cart.module.css";
 import headphoneImg from "./headphone.jpg";
 import PropTypes from "prop-types";
 import Navbar from "../Navbar/Navbar";
-import axios from "axios";
+// import axios from "axios";
 function Cart(props) {
   return (
     <>
