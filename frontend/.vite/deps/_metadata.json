@@ -1,0 +1,188 @@
+{
+  "hash": "61a77987",
+  "browserHash": "d47fc947",
+  "optimized": {
+    "@mui/icons-material/AccountCircle": {
+      "src": "../../node_modules/@mui/icons-material/AccountCircle.js",
+      "file": "@mui_icons-material_AccountCircle.js",
+      "fileHash": "4af4dd22",
+      "needsInterop": true
+    },
+    "@mui/icons-material/Add": {
+      "src": "../../node_modules/@mui/icons-material/Add.js",
+      "file": "@mui_icons-material_Add.js",
+      "fileHash": "a8e6d655",
+      "needsInterop": true
+    },
+    "@mui/icons-material/ArrowDropDown": {
+      "src": "../../node_modules/@mui/icons-material/ArrowDropDown.js",
+      "file": "@mui_icons-material_ArrowDropDown.js",
+      "fileHash": "4840b60f",
+      "needsInterop": true
+    },
+    "@mui/icons-material/Close": {
+      "src": "../../node_modules/@mui/icons-material/Close.js",
+      "file": "@mui_icons-material_Close.js",
+      "fileHash": "1654a366",
+      "needsInterop": true
+    },
+    "@mui/icons-material/Favorite": {
+      "src": "../../node_modules/@mui/icons-material/Favorite.js",
+      "file": "@mui_icons-material_Favorite.js",
+      "fileHash": "f59396d9",
+      "needsInterop": true
+    },
+    "@mui/icons-material/FavoriteBorder": {
+      "src": "../../node_modules/@mui/icons-material/FavoriteBorder.js",
+      "file": "@mui_icons-material_FavoriteBorder.js",
+      "fileHash": "5470310c",
+      "needsInterop": true
+    },
+    "@mui/icons-material/LocalOffer": {
+      "src": "../../node_modules/@mui/icons-material/LocalOffer.js",
+      "file": "@mui_icons-material_LocalOffer.js",
+      "fileHash": "818800d9",
+      "needsInterop": true
+    },
+    "@mui/icons-material/Remove": {
+      "src": "../../node_modules/@mui/icons-material/Remove.js",
+      "file": "@mui_icons-material_Remove.js",
+      "fileHash": "10452274",
+      "needsInterop": true
+    },
+    "@mui/icons-material/Search": {
+      "src": "../../node_modules/@mui/icons-material/Search.js",
+      "file": "@mui_icons-material_Search.js",
+      "fileHash": "0c08b623",
+      "needsInterop": true
+    },
+    "@mui/icons-material/ShoppingBag": {
+      "src": "../../node_modules/@mui/icons-material/ShoppingBag.js",
+      "file": "@mui_icons-material_ShoppingBag.js",
+      "fileHash": "99bacaec",
+      "needsInterop": true
+    },
+    "@mui/icons-material/ShoppingCart": {
+      "src": "../../node_modules/@mui/icons-material/ShoppingCart.js",
+      "file": "@mui_icons-material_ShoppingCart.js",
+      "fileHash": "87ab4a31",
+      "needsInterop": true
+    },
+    "@mui/material/IconButton": {
+      "src": "../../node_modules/@mui/material/IconButton/index.js",
+      "file": "@mui_material_IconButton.js",
+      "fileHash": "0479d3b0",
+      "needsInterop": false
+    },
+    "@mui/material/InputAdornment": {
+      "src": "../../node_modules/@mui/material/InputAdornment/index.js",
+      "file": "@mui_material_InputAdornment.js",
+      "fileHash": "226dd7b8",
+      "needsInterop": false
+    },
+    "@mui/material/TextField": {
+      "src": "../../node_modules/@mui/material/TextField/index.js",
+      "file": "@mui_material_TextField.js",
+      "fileHash": "ee41bd99",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "2a78dfdc",
+      "needsInterop": false
+    },
+    "prop-types": {
+      "src": "../../node_modules/prop-types/index.js",
+      "file": "prop-types.js",
+      "fileHash": "d523ea3e",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "d6d24ba3",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "3e4083d7",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "2aa24393",
+      "needsInterop": false
+    },
+    "firebase/auth": {
+      "src": "../../node_modules/firebase/auth/dist/esm/index.esm.js",
+      "file": "firebase_auth.js",
+      "fileHash": "d13cf4a5",
+      "needsInterop": false
+    },
+    "@mui/icons-material/Google": {
+      "src": "../../node_modules/@mui/icons-material/Google.js",
+      "file": "@mui_icons-material_Google.js",
+      "fileHash": "2dafc6eb",
+      "needsInterop": true
+    },
+    "@mui/icons-material/Delete": {
+      "src": "../../node_modules/@mui/icons-material/Delete.js",
+      "file": "@mui_icons-material_Delete.js",
+      "fileHash": "5fca54e3",
+      "needsInterop": true
+    },
+    "firebase/app": {
+      "src": "../../node_modules/firebase/app/dist/esm/index.esm.js",
+      "file": "firebase_app.js",
+      "fileHash": "0555a621",
+      "needsInterop": false
+    },
+    "@mui/icons-material/CheckCircle": {
+      "src": "../../node_modules/@mui/icons-material/CheckCircle.js",
+      "file": "@mui_icons-material_CheckCircle.js",
+      "fileHash": "9d33814d",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-DTZIM4EP": {
+      "file": "chunk-DTZIM4EP.js"
+    },
+    "chunk-TYGO3AOI": {
+      "file": "chunk-TYGO3AOI.js"
+    },
+    "chunk-XD73RXYW": {
+      "file": "chunk-XD73RXYW.js"
+    },
+    "chunk-6K3CCQW5": {
+      "file": "chunk-6K3CCQW5.js"
+    },
+    "chunk-IWW5HM33": {
+      "file": "chunk-IWW5HM33.js"
+    },
+    "chunk-SRHKXVSH": {
+      "file": "chunk-SRHKXVSH.js"
+    },
+    "chunk-T2NOJEZM": {
+      "file": "chunk-T2NOJEZM.js"
+    },
+    "chunk-VTTHXK3B": {
+      "file": "chunk-VTTHXK3B.js"
+    },
+    "chunk-PRK46SJB": {
+      "file": "chunk-PRK46SJB.js"
+    },
+    "chunk-FLAVOKRJ": {
+      "file": "chunk-FLAVOKRJ.js"
+    },
+    "chunk-5AUPUJGB": {
+      "file": "chunk-5AUPUJGB.js"
+    },
+    "chunk-AC2VUBZ6": {
+      "file": "chunk-AC2VUBZ6.js"
+    }
+  }
+}
