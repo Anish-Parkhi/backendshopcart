@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -75,14 +75,9 @@ function Navbar() {
             />
           </li>
           <li>
-            <Link to="/deals">Deals</Link>
-            <LocalOfferIcon
-              style={{
-                fontSize: "1.6rem",
-                position: "relative",
-                top: "0.5rem",
-              }}
-              className={styles.muiIcon}
+            <Link to="/wishlist">Wishlist</Link>
+            <FavoriteIcon
+              style={{ fontSize: "2rem", position: "relative", top: "0.5rem" }}
             />
           </li>
           <li>

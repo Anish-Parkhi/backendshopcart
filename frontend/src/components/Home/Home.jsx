@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function Home(props) {
-  const [favorite, setFavourite] = useState(false);
+  const [favorite, setFavourite] = useState([]);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
@@ -21,11 +21,30 @@ function Home(props) {
       .get("http://localhost:3000/products")
       .then((res) => {
         setPosts(res.data);
+        setFavourite(new Array(res.data.length).fill(false));
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  //useEffect to add products to wishlist
+
+  useEffect(() => {
+    for (let i = 0; i < favorite.length; i++) {
+      if (favorite[i]) {
+        axios
+          .post("http://localhost:3000/wishlist", posts[i])
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
+  }, [posts, favorite]);
+
   //logic to implement smooth scroll
   const scrollRef = useRef(null);
 
@@ -58,17 +77,25 @@ function Home(props) {
           return (
             <div key={index} className={styles.cardWrapper}>
               <div className={styles.cardContainer}>
-                {favorite ? (
+                {favorite[index] ? (
                   <FavoriteIcon
                     style={{ marginLeft: "auto", padding: "0.7rem" }}
                     className={styles.cardContainerFavIcon}
-                    onClick={() => setFavourite(!favorite)}
+                    onClick={() => {
+                      const updatedFavioutes = [...favorite];
+                      updatedFavioutes[index] = !favorite[index];
+                      setFavourite(updatedFavioutes);
+                    }}
                   />
                 ) : (
                   <FavoriteBorderIcon
                     style={{ marginLeft: "auto", padding: "0.7rem" }}
                     className={styles.cardContainerFavIcon}
-                    onClick={() => setFavourite(!favorite)}
+                    onClick={() => {
+                      const updatedFavioutes = [...favorite];
+                      updatedFavioutes[index] = !favorite[index];
+                      setFavourite(updatedFavioutes);
+                    }}
                   />
                 )}
                 <div style={{ textAlign: "center" }}>
@@ -83,7 +110,7 @@ function Home(props) {
                 <div className={styles.cardFooterHeadingDiv}>
                   <div>{item.product}</div>
                   <div style={{ marginLeft: "auto", fontWeight: "600" }}>
-                    ${item.price}
+                    ₹ {item.price}
                   </div>
                 </div>
                 <div className={styles.cardFooterDescription}>
