@@ -24,7 +24,7 @@ function Modal(props) {
         <div className={styles.modalCheckout}>
           <button
             className={styles.modalCheckoutButton}
-            onClick={() => navigate("/checkout")}
+            onClick={() => navigate("/cart")}
           >
             Proceed to Checkout
           </button>

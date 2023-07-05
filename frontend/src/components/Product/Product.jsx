@@ -34,6 +34,7 @@ function Product() {
       name: posts.product,
       price: posts.price,
       quantity: count,
+      url: posts.url,
     };
     axios
       .post("http://localhost:3000/cart", newItem, {
