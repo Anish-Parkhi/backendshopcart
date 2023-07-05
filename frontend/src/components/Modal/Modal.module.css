@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rbga(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,13 +13,28 @@
 .modalBodyMain{
     width: 500px;
     background-color: #fff;
-    padding: 20px;
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
 }
-.modalHeader .modalFooter{
-    padding: 20px;
+.modalHeader{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.modalCloseButton{
+    text-align: right;
 }
 .modalBody{
-    padding: 20px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    padding: 1rem;
+}
+.modalCheckoutButton{
+    margin: 0.5rem;
+    padding: 0.7rem;
+    background-color: rgb(2, 60, 2);
+    color: white;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    width: 40%;
 }

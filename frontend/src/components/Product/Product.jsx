@@ -5,12 +5,11 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import Navbar from "../Navbar/Navbar";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Modal from "../Modal/Modal";
 // import Cart from "../Cart/Cart";
 function Product() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [posts, setPosts] = useState([]);
   const [show, setShow] = useState(false);
   const location = useLocation();
@@ -25,13 +24,9 @@ function Product() {
         console.log(err);
       });
   }, [id]);
-  const navigate = useNavigate();
-  const navigateToCheckout = () => {
-    navigate("/checkout");
-  };
   const handleClick = () => {
     // toggle Modal
-    // setShow(true);
+    setShow(true);
     if (posts.length === 0) {
       return; // Do not proceed if posts data is not available yet
     }
@@ -72,11 +67,15 @@ function Product() {
           </div>
           <hr />
           <div className={styles.productContainerCounter}>
-            <div onClick={() => setCount((prev) => prev - 1)}>
+            <div
+              onClick={() => setCount((prev) => (prev > 1 ? prev - 1 : prev))}
+            >
               <RemoveIcon />
             </div>
             <div style={{ fontSize: "1.3rem" }}>{count}</div>
-            <div onClick={() => setCount((prev) => prev + 1)}>
+            <div
+              onClick={() => setCount((prev) => (prev < 10 ? prev + 1 : prev))}
+            >
               <AddIcon />
             </div>
           </div>
@@ -95,10 +94,8 @@ function Product() {
           </div>
         </div>
       </div>
-      <button onClick={() => setShow(true)}>Show Modal</button>
       {/* modal component */}
       <Modal onClose={() => setShow(false)} show={show} />
-      <button onClick={navigateToCheckout}>Proceed to Checkout</button>
     </>
   );
 }
