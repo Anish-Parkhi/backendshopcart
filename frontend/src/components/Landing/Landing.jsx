@@ -1,5 +1,5 @@
-import Navbar from "../Navbar/Navbar";
 import Home from "../Home/Home";
+import Navbar from "../Navbar/Navbar";
 // import Product from "../Product/Product";
 // import Cart from "../Cart/Cart";
 import React from "react";

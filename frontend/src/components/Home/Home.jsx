@@ -1,12 +1,14 @@
-import styles from "./Home.module.css";
-import PropTypes from "prop-types";
-import img from "./girl.png";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState, useEffect, useRef } from "react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import axios from "axios";
+import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from "react";
+import Carousel from "react-material-ui-carousel";
 import { useNavigate } from "react-router-dom";
-function Home(props) {
+import styles from "./Home.module.css";
+import img1 from "./girl.png";
+import img2 from "./girl2.png";
+function Home() {
   const [favorite, setFavourite] = useState([]);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
@@ -47,6 +49,20 @@ function Home(props) {
 
   //logic to implement smooth scroll
   const scrollRef = useRef(null);
+  const data = [
+    {
+      id: 1,
+      headline: "Grab Upto 50% off on all headphones",
+      url: "https://www.google.com/search?q=google+brad&rlz=1C1VDKB_enIN1063IN1063&oq=goog&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDkyBggCEEUYQDIGCAMQRRg8MgYIBBBFGDwyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQgyNDEyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8",
+      image: img1,
+    },
+    {
+      id: 2,
+      headline: "Get no cost EMI on selected Cards",
+      url: "https://www.npmjs.com/package/react-material-ui-carousel",
+      image: img2,
+    },
+  ];
 
   const enableScroll = () => {
     scrollRef.current.scrollIntoView({
@@ -56,19 +72,37 @@ function Home(props) {
   return (
     <>
       <div className={styles.posterContainerWrapper}>
-        <div className={styles.posterContainer}>
-          <p className={styles.posterContainerHeadline}>{props.headline}</p>
-          <button
-            onClick={enableScroll}
-            id="scrollButton"
-            className={styles.posterContainerButton}
-          >
-            Buy Now
-          </button>
-        </div>
-        <div style={{ marginLeft: "auto" }}>
-          <img className={styles.posterContainerImage} src={img} />
-        </div>
+        <Carousel sx={{ width: "100%", height: "20rem" }}>
+          {data.map((item) => (
+            <>
+              <div key={item.id} style={{ display: "flex" }}>
+                <div className={styles.posterContainer}>
+                  <p className={styles.posterContainerHeadline}>
+                    {item.headline}
+                  </p>
+                  <button
+                    onClick={enableScroll}
+                    id="scrollButton"
+                    className={styles.posterContainerButton}
+                  >
+                    Buy Now
+                  </button>
+                </div>
+                <div style={{ marginLeft: "auto", flexBasis: "2" }}>
+                  <img
+                    style={{
+                      objectFit: "cover",
+                      padding: "0.6rem",
+                      // marginTop: "auto",
+                    }}
+                    className={styles.posterContainerImage}
+                    src={item.image}
+                  />
+                </div>
+              </div>
+            </>
+          ))}
+        </Carousel>
       </div>
 
       {/* card view */}
