@@ -166,6 +166,8 @@ app.post("/payment", cors(), async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+const http = require('http')
+const server = http.createServer(app);
+server.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });
