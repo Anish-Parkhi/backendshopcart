@@ -136,7 +136,9 @@ app.delete("/wishlist/:id", (req, res) => {
       res.status(500).json({ error: "Internal server error" });
     });
 });
-
+app.get("/sample", (req, res) => {
+  res.json({ message: "This is a sample response" });
+});
 //payment route
 
 app.post("/payment", cors(), async (req, res) => {
