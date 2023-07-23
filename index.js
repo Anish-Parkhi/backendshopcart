@@ -5,10 +5,10 @@ const Product = require("./Models/product");
 const CartItem = require("./Models/cart");
 const Wishlist = require("./Models/wishlist");
 require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")("sk_test_51NPiprSCc9IYYaIDSfwMsEdD0ZPyEpMugkOKU2rtWjGihRVxDHzrmqDIxVv0pd16YNgVnvQ0COqm5wZQKUfV46d800Qy4BBASC");
 const bodyParser = require("body-parser");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT||3000;
 app.use(cors());
 //{ origin: true, credentials: true }
 app.use(express.json());
