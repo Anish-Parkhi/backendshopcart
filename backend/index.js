@@ -11,11 +11,14 @@ const app = express();
 const PORT = 3000;
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
-mongoose.connect("mongodb://localhost:27017/shopping", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  family: 4,
-});
+mongoose.connect(
+  "mongodb+srv://root:root@ecomm.umpyy4z.mongodb.net/test?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    family: 4,
+  }
+);
 
 // Event handler for successful connection
 mongoose.connection.on("connected", () => {
