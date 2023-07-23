@@ -9,7 +9,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = 3000;
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors());
+//{ origin: true, credentials: true }
 app.use(express.json());
 mongoose.connect(
   "mongodb+srv://root:root@ecomm.umpyy4z.mongodb.net/test?retryWrites=true&w=majority",
