@@ -138,7 +138,7 @@ app.delete("/wishlist/:id", (req, res) => {
     });
 });
 app.get("/sample", (req, res) => {
-  res.json({ message: "This is a sample response" });
+  res.status(200).send("This is a sample response");
 });
 //payment route
 
